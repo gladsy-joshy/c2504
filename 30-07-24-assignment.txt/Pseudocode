@@ -1,0 +1,339 @@
+19) To find average of two numbers?
+
+Pseudocode:
+	
+   Input num1
+   Input num2
+  
+   sum = num1 + num2
+   
+   average = sum / 2
+    
+   print "The average of " + num1 + " and " + num2 + " is " + average
+
+
+
+Pseudo:Routne
+
+	Function FindAverage(num1, num2)
+		sum = num1 + num2
+		average = sum / 2
+		return average
+
+
+
+Pseudo:Routne Test
+
+	Function TestFindAverage
+		num1 = 4
+		num2 = 8
+		output = 6
+		result = FindAverage(num1, num2)
+		if result == output
+			print "Test Passed"
+		else
+			print "Test Failed"
+	End Function
+
+c# program:
+	
+	
+	using System;
+
+namespace Average
+{
+    class Program
+    {
+	
+        static int FindAverage(int a, int b)
+        {
+            int sum = a + b;
+            int average = sum / 2;
+            return average;
+        }
+
+        
+        static void TestFindAverage()
+        {
+            int a = 4;
+            int b = 8;
+            int output = 6;
+            int result = FindAverage(a, b);
+            if (result == output)
+            {
+                Console.WriteLine("Test Case Passed");
+            }
+            else
+            {
+                Console.WriteLine("Test Case Failed");
+            }
+        }
+
+        static void Main(string[] args)
+        {
+            
+            TestFindAverage();
+        }
+    }
+}
+
+
+
+20)To find cube of number?
+
+Pseudocode:
+	
+    Input num
+    
+    cube = num * num * num
+    
+    print "The cube of " + num + " is " + cube
+
+
+
+Pseudo:Routne
+	Function FindCube(num)
+		cube = num * num * num
+		return cube
+	
+
+Pseudo:Routne Test
+	Function TestFindCube()
+		num = 3
+		result = FindCube(num)
+		print "Cube of " + num + " is " + result
+	
+
+
+c# program:
+		using System;
+
+namespace CubeCalculator
+{
+    class Program
+    {
+        
+        static int FindCube(int n)
+        {
+            return n * n * n;
+        }
+
+        
+        static void TestFindCube()
+        {
+            int n = 3;
+            int result = FindCube(n);
+            Console.WriteLine("Cube of " + n + " is " + result);
+        }
+
+        static void Main(string[] args)
+        {
+            
+            TestFindCube();
+        }
+    }
+}
+
+
+15. to find square of the number?
+
+Pseudocode:
+
+	
+    Input num
+    
+    square = num * num
+    
+    print "The square of " + num + " is " + square
+
+
+Pseudo:Routne
+
+	Function FindSquare(num)
+		square = num * num
+		return square
+	
+
+Pseudo:Routne Test
+	Function TestFindSquare()
+		print "Enter a number:"
+		Input num
+		result = FindSquare(num)
+		print "Square of " + num + " is " + result
+	
+
+
+9. swap two numbers?
+
+
+Pseudocode:
+	Input num1
+    Input num2
+   
+    temp = num1
+    num1 = num2
+    num2 = temp
+  
+    print "First number is " + num1
+    print "Second number is " + num2
+
+
+
+Pseudo:Routne
+
+	Function SwapNumbers(a, b)
+		temp = a
+		a = b
+		b = temp
+		return (a, b)
+	
+	
+Pseudo:Routne Test
+	
+	Function TestSwapNumbers()
+		print "Enter the first number:"
+		a = Read input
+		print "Enter the second number:"
+		b = Read input
+		(a, b) = SwapNumbers(a, b)
+		print "After swapping, first number is " + a + " and second number is " + b
+	
+
+c# program:
+
+using System;
+
+namespace Swap
+{
+    class Program
+    {
+        
+        static (string, string) SwapNumbers(string a, string b)
+        {
+            string temp = a;
+            a = b;
+            b = temp;
+            return (a, b);
+        }
+
+        
+        static void TestSwapNumbers()
+        {
+            Console.WriteLine("Enter the first number:");
+            string a = Console.ReadLine();
+            
+            Console.WriteLine("Enter the second number:");
+            string b = Console.ReadLine();
+            
+            (a, b) = SwapNumbers(a, b);
+            
+            Console.WriteLine("After swapping, first number is " + a + " and second number is " + b);
+        }
+
+        static void Main(string[] args)
+        {
+           
+            TestSwapNumbers();
+        }
+    }
+}
+
+
+
+28. to check nubmer is divisible by 3?
+
+Pseudocode:
+	
+    input num1
+    
+    if num1 % 3 == 0
+        print "divisible by 3."
+    else
+        print " divisible by 3."
+
+
+Pseudo:Routne
+
+	Function IsDivisibleBy3(num1)
+		if num1 % 3 == 0
+			return true
+		else
+			return false
+	
+
+Pseudo:Routne Test
+
+	Function TestIsDivisibleBy3()
+		
+		Input num1
+			result = IsDivisibleBy3(num1)
+		if result
+			print " divisible by 3."
+		else
+			print " divisible by 3."
+	
+
+
+11. number divisible by 27?
+ 
+
+Pseudocode:
+	
+    input num1
+    
+    if num1 % 27 == 0
+        print "divisible by 27."
+    else
+        print " divisible by 27."
+	
+
+
+
+Pseudo:Routne
+	Function IsDivisibleBy27(num1)
+		if num1 % 27 == 0
+			return true
+		else
+			return false
+	
+
+Pseudo:Routne Test
+
+	Function TestIsDivisibleBy27()
+			print "Enter a number:"
+		    input n
+			result = IsDivisibleBy27(n)
+		if result is true
+			print"divisible by 27."
+		else
+			print"not divisible by 27."
+	
+
+
+
+14. to print N natural numbers?
+
+
+Pseudocode:
+
+    Input N
+    
+    i = 1
+    while i <= N
+        print i
+        i = i + 1
+
+
+Pseudo:Routne
+
+	Function PrintNaturalNumbers(N)
+		for i = 1 to N
+			print i
+	
+
+Pseudo:Routne Test
+ 
+	 Function TestPrintNaturalNumbers()
+		print "Enter a number N:"
+		N = Read input
+		PrintNaturalNumbers(N)
