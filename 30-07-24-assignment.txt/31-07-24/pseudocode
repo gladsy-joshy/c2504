@@ -1,0 +1,404 @@
+*****31/07/2024******
+
+
+
+1.print the one is adult based his/her age ?Dont print if not adult 
+
+	function IsAdult(age) 
+        isAdult = (age >= 18);
+        return isAdult; 
+
+    function TestIsAdult(): 
+        Input age 
+        if(IsAdult(age)) 
+            print 'You are an adult.'
+        end if
+		
+
+		
+		
+2.Take a num 10, if num greater than 5 print "num as 'greater than 5'"
+
+	function IsGreater(num) 
+        IsGreater = (num > 5);
+        return IsGreater; 
+
+    function TestIsGreater(): 
+        Input num 
+        if(IsGreater(num)) 
+            print 'num is greater than 5'
+        end if
+		
+		
+3.To print 'number is positive' if num > 0 .it should not print if not positive 
+
+	function IsPositive(num) 
+        IsPositive = (num > 0);
+        return IsPositive; 
+
+    function TestIsPositive(): 
+        Input num 
+        if(IsPositive(num)) 
+            print 'num is positive'
+        end if
+		
+4.if temp > 25, print it is hot outside.
+
+	function IsHot(temp) 
+        IsHot = (temp > 0);
+        return IsHot; 
+
+    function TestIsHot(): 
+        Input temp 
+        if(IsHot(temp)) 
+            print 'it is hot outside'
+        end if
+		
+5.input doctorSalary/month, check if is 6 digit salary or not 
+
+function IsSixDigitSalary(salary):
+    IsSixDigit = (salary >= 100000) and (salary <= 999999)
+    return IsSixDigit
+
+function TestIsSixDigitSalary():
+    Input salary
+    if (IsSixDigitSalary(salary)):
+        print 'The salary is a six-digit salary'
+    else:
+        print 'The salary is not a six-digit salary'
+    end if
+	
+	
+6. check tumour is cancerous if  malignant or not cancerous if benign
+
+function IsCancerous(tumour):
+    IsCancerous = (tumour == "malignant")
+    return IsCancerous
+
+function TestIsCancerous():
+    Input tumour
+    if (IsCancerous(tumour)):
+        print 'The tumour is cancerous'
+    else:
+        print 'The tumour is not cancerous'
+    end if
+	
+	
+7.To check the person adult, teenager or child for given age 
+
+    function IsAdult(age) 
+        isAdult = (age >= 18);
+        return isAdult; 
+    function IsTeenager(age) 
+        isTeenager = (age >= 13);
+        return isTeenager; 
+    function TestIsAdultTeenagerOrChild():
+        Input age 
+        if(IsAdult(age)) 
+            print 'You are an adult.'
+        else if(IsTeenager(age)) 
+            print 'You are a teenager.'
+        else
+            print 'You are a child.'
+        end if
+		
+		
+8. to check health risk based body mass index?get BMI, [underweight < 18.5, normal weight <= 24.9, overweight]
+
+function GetHealthRisk(BMI):
+    if (BMI < 18.5):
+        HealthRisk = "underweight"
+    else if (BMI <= 24.9):
+        HealthRisk = "normal weight"
+    else:
+        HealthRisk = "overweight"
+    end if
+    return HealthRisk
+
+function TestGetHealthRisk():
+    Input BMI
+    HealthRisk = GetHealthRisk(BMI)
+    print 'The health risk based on BMI is:', HealthRisk
+
+9.to print day name for given day number
+
+function GetDayName(dayNumber):
+    if (dayNumber == 1):
+        dayName = "Sunday"
+    else if (dayNumber == 2):
+        dayName = "Monday"
+    else if (dayNumber == 3):
+        dayName = "Tuesday"
+    else if (dayNumber == 4):
+        dayName = "Wednesday"
+    else if (dayNumber == 5):
+        dayName = "Thursday"
+    else if (dayNumber == 6):
+        dayName = "Friday"
+    else if (dayNumber == 7):
+        dayName = "Saturday"
+    else:
+        dayName = "Invalid day number"
+    end if
+    return dayName
+
+function TestGetDayName():
+    Input dayNumber
+    dayName = GetDayName(dayNumber)
+    print 'The day name for the given day number is:', dayName
+
+
+10.to get response code from the user 
+        -- digital engineering service 
+        if 400 -> bad request
+        if 401 -> unauthorized 
+        if 200 -> response with ok status 
+        if 500 -> server error 
+        else unknown error 
+		
+		
+		
+function GetResponseMessage(responseCode):
+    if (responseCode == 400):
+        responseMessage = "Bad Request"
+    else if (responseCode == 401):
+        responseMessage = "Unauthorized"
+    else if (responseCode == 200):
+        responseMessage = "OK"
+    else if (responseCode == 500):
+        responseMessage = "Server Error"
+    else:
+        responseMessage = "Unknown Error"
+    end if
+    return responseMessage
+
+function TestGetResponseMessage():
+    Input responseCode
+    responseMessage = GetResponseMessage(responseCode)
+    print 'The response message for the given response code is:', responseMessage
+
+
+11. check for car maintenance
+    cases :
+        'O' = Oil Change, "Change Oil and Replace Oil Filter"
+        'T' = Tire Rotaion, "Rotate Tire and align them properly"
+        'B' = Brake, "Inspect the brake and replace them if necessary" 
+        'A' = Battery,         "Battery Check and Replace them"
+        Default: "Some other reason"
+		
+		
+		
+		
+function GetMaintenanceTask(code):
+    switch (code):
+        case 'O':
+            task = "Change Oil and Replace Oil Filter"
+            break
+        case 'T':
+            task = "Rotate Tire and align them properly"
+            break
+        case 'B':
+            task = "Inspect the brake and replace them if necessary"
+            break
+        case 'A':
+            task = "Battery Check and Replace them"
+            break
+        default:
+            task = "Some other reason"
+            break
+    end switch
+    return task
+
+function TestGetMaintenanceTask():
+    Input code
+    task = GetMaintenanceTask(code)
+    print 'The maintenance task for the given code is:', task
+
+
+12.while : to print N whole numbers
+
+function PrintWholeNumbers(N):
+    i = 0
+    while (i < N):
+        print i
+        i = i + 1
+    end while
+
+function TestPrintWholeNumbers():
+    Input N
+    PrintWholeNumbers(N)
+	
+	
+13.do while: to print N whole numbers
+
+function PrintWholeNumbers(N):
+    i = 0
+    do:
+        print i
+        i = i + 1
+    while (i < N)
+
+function TestPrintWholeNumbers():
+    Input N
+    PrintWholeNumbers(N)
+
+14.nested if in for loop: 
+    classify the patients based on age and their blood pressure 
+    get patients age and blood pressure in two arrays. 
+    then form classification array based on age and blood pressure.
+    
+    solution function:
+    function FormClassifications(ages -> int array, bloodPresseures -> int array) -> string array
+        for loop 
+            if statement 
+			
+			
+			
+function FormClassifications(ages, bloodPressures):
+    classifications = []
+    for i = 0 to length(ages) - 1:
+        age = ages[i]
+        bloodPressure = bloodPressures[i]
+
+        if (age < 18):
+            if (bloodPressure < 80):
+                classification = "Child - Low BP"
+            else if (bloodPressure <= 120):
+                classification = "Child - Normal BP"
+            else:
+                classification = "Child - High BP"
+        else if (age <= 60):
+            if (bloodPressure < 90):
+                classification = "Adult - Low BP"
+            else if (bloodPressure <= 140):
+                classification = "Adult - Normal BP"
+            else:
+                classification = "Adult - High BP"
+        else:
+            if (bloodPressure < 100):
+                classification = "Senior - Low BP"
+            else if (bloodPressure <= 150):
+                classification = "Senior - Normal BP"
+            else:
+                classification = "Senior - High BP"
+        end if
+
+        classifications.append(classification)
+    end for
+
+    return classifications
+
+function TestFormClassifications():
+    ages = [10, 25, 65, 40]
+    bloodPressures = [75, 130, 160, 85]
+    classifications = FormClassifications(ages, bloodPressures)
+    print 'The classifications for the given patients are:', classifications
+
+
+15.pseudo code to print sum of first 10 even even numbers.
+
+	begin
+    int count = 0
+    int number = 2
+    int sum = 0
+ 
+    while count < 10 do
+       
+        sum = sum + number
+       
+        number = number + 2
+       
+        count = count + 1
+    end while
+
+    
+    print "The sum of the first 10 even numbers is: ", sum
+	
+	end
+	
+	
+16.Bank Account ManagementWrite pseudocode to manage a simple bank account that allows deposits, withdrawals, and checking the balance
+
+
+	function TestBankAccount()
+	balance=0
+	print "1.deposit"
+	print "2.withdraw"
+	print "3.check balance"
+	print "4.exit"
+        input choice
+	switch choice
+	case 1.
+	print "enter amount"
+	if amount<decimal> > 0 
+                balance = balance + amount
+                print "Deposit successful " + balance
+	 else
+                print "Invalid deposit amount."
+	case 2.
+	print "enter amount"
+	 if amount<decimal> > 0 
+                if amount<decimal> <= balance 
+                    balance = balance - amount
+                    print "Withdrawal successful"
+                else
+                    print "Insufficient balance."
+            else
+                print "Invalid withdrawal amount."
+	case 3.
+		 print "Current balance: " + balance
+	call TestBankAccount()
+	
+	
+17.Simple Calculator: Write pseudocode for a simple calculator that takes two numbers and an operator (+, -, *, /) as input and outputs the result of the operation
+
+
+ BEGIN
+    DECLARE num1, num2, result AS FLOAT
+    DECLARE operator AS CHAR
+ 
+   
+    PRINT "Enter first number: "
+    INPUT num1
+ 
+    PRINT "Enter operator (+, -, *, /): "
+    INPUT operator
+ 
+    PRINT "Enter second number: "
+    INPUT num2
+ 
+   
+    IF operator == '+' THEN
+        result = num1 + num2
+    ELSE IF operator == '-' THEN
+        result = num1 - num2
+    ELSE IF operator == '*' THEN
+        result = num1 * num2
+    ELSE IF operator == '/' THEN
+        IF num2 != 0 THEN
+            result = num1 / num2
+        ELSE
+            PRINT "Error: Division by zero"
+            EXIT
+        END IF
+    ELSE
+        PRINT "Error: Invalid operator"
+        EXIT
+    END IF
+ 
+    PRINT "The result is: ", result
+END
+
+
+18.FizzBuzz: Write pseudocode for the FizzBuzz problem: For numbers 1 to 100, print "Fizz" for multiples of 3, "Buzz" for multiples of 5, and "FizzBuzz" for multiples of both.
+
+
+	for (int number = 1; number <= 100; number++)
+    If number MOD 3 = 0 and number MOD 5 = 0 then
+        Print "FizzBuzz"
+    Else If number MOD 3 = 0 then
+        Print "Fizz"
+    Else If number MOD 5 = 0 then
+         Print "Buzz"
+    Else
+        Print number
