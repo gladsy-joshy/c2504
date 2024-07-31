@@ -1,0 +1,107 @@
+1.pseudo code to print sum of first 10 even even numbers.
+
+	begin
+    int count = 0
+    int number = 2
+    int sum = 0
+ 
+    while count < 10 do
+       
+        sum = sum + number
+       
+        number = number + 2
+       
+        count = count + 1
+    end while
+
+    
+    print "The sum of the first 10 even numbers is: ", sum
+	
+	end
+	
+	
+2.Bank Account ManagementWrite pseudocode to manage a simple bank account that allows deposits, withdrawals, and checking the balance
+
+
+	function TestBankAccount()
+	balance=0
+	print "1.deposit"
+	print "2.withdraw"
+	print "3.check balance"
+	print "4.exit"
+        input choice
+	switch choice
+	case 1.
+	print "enter amount"
+	if amount<decimal> > 0 
+                balance = balance + amount
+                print "Deposit successful " + balance
+	 else
+                print "Invalid deposit amount."
+	case 2.
+	print "enter amount"
+	 if amount<decimal> > 0 
+                if amount<decimal> <= balance 
+                    balance = balance - amount
+                    print "Withdrawal successful"
+                else
+                    print "Insufficient balance."
+            else
+                print "Invalid withdrawal amount."
+	case 3.
+		 print "Current balance: " + balance
+	call TestBankAccount()
+	
+	
+3.Simple Calculator: Write pseudocode for a simple calculator that takes two numbers and an operator (+, -, *, /) as input and outputs the result of the operation
+
+
+ BEGIN
+    DECLARE num1, num2, result AS FLOAT
+    DECLARE operator AS CHAR
+ 
+   
+    PRINT "Enter first number: "
+    INPUT num1
+ 
+    PRINT "Enter operator (+, -, *, /): "
+    INPUT operator
+ 
+    PRINT "Enter second number: "
+    INPUT num2
+ 
+   
+    IF operator == '+' THEN
+        result = num1 + num2
+    ELSE IF operator == '-' THEN
+        result = num1 - num2
+    ELSE IF operator == '*' THEN
+        result = num1 * num2
+    ELSE IF operator == '/' THEN
+        IF num2 != 0 THEN
+            result = num1 / num2
+        ELSE
+            PRINT "Error: Division by zero"
+            EXIT
+        END IF
+    ELSE
+        PRINT "Error: Invalid operator"
+        EXIT
+    END IF
+ 
+    PRINT "The result is: ", result
+END
+
+
+4.FizzBuzz: Write pseudocode for the FizzBuzz problem: For numbers 1 to 100, print "Fizz" for multiples of 3, "Buzz" for multiples of 5, and "FizzBuzz" for multiples of both.
+
+
+	for (int number = 1; number <= 100; number++)
+    If number MOD 3 = 0 and number MOD 5 = 0 then
+        Print "FizzBuzz"
+    Else If number MOD 3 = 0 then
+        Print "Fizz"
+    Else If number MOD 5 = 0 then
+         Print "Buzz"
+    Else
+        Print number
