@@ -1,0 +1,49 @@
+class TestCountMin6DigitsSalariedDoctors
+{
+    
+    static bool IsDoctorSalaryMin6Digits(int doctorSalary) 
+    {
+        return doctorSalary >= 100000;
+    }
+
+    static int CountMin6DigitsSalariedDoctors(int [] salaries, int size)
+    {
+        int count = 0;
+        for(int I = 0; I <= size-1; I++)
+        { 
+            if (IsDoctorSalaryMin6Digits(salaries[I]))
+            {
+                count += 1;
+            }
+        }
+        return count;
+    }
+    // input=3,[89,6666356,678455], output=Number of Min 6 Digits Salaried Doctors : 2
+    // input=4,[400,40000,40000000,400000], output=Number of Min 6 Digits Salaried Doctors : 2
+    // input=4,[400000,40000,40000000,900000], output=Number of Min 6 Digits Salaried Doctors : 3
+
+    //Note: Salaries -> array of salaries 
+    static void TestCountMin6DigitsSalariedDoctors()
+    {
+        Console.Write("Number of Doctors:");
+        int size = int.Parse(Console.ReadLine());
+        Console.WriteLine("Enter one by one doctors salries.");
+        int[] salaries = new int[size]; //new int[size] allocates the int memblocks of size "size" [Minnu|Sarika]
+        for (int I = 0; I <= size - 1; I++)
+        {
+            Console.Write($"Salary of {I + 1}th Doctor:");
+            salaries[I] = int.Parse(Console.ReadLine());
+        }
+        int sixDigitsSalariedCount = CountMin6DigitsSalariedDoctors(salaries, size);
+        Console.WriteLine($"Number of Min 6 Digits Salaried Doctors : {sixDigitsSalariedCount}");
+    }
+
+    static void Main(string[] args) //user: p
+    {
+        Console.WriteLine("------------------------TestCountMin6DigitsSalariedDoctors------------------------------");
+        TestCountMin6DigitsSalariedDoctors();
+        Console.WriteLine("------------------------End TestCountMin6DigitsSalariedDoctors------------------------------");
+        Console.WriteLine("Press any key to contine...");
+        Console.ReadKey();
+    }
+}
