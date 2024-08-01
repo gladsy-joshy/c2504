@@ -1,0 +1,37 @@
+using System;
+
+class ReadAndCountDoctorsMin6DigitsSalaried
+{
+    static void CountDoctorsWithMin6DigitsSalary()
+    {
+        int count = 0;
+        
+        Console.Write("Enter number of salaries: ");
+        int N = int.Parse(Console.ReadLine());
+
+        for (int i = 1; i <= N; i++)
+        {
+            Console.Write($"Salary of {i}th Doctor: ");
+            int salary = int.Parse(Console.ReadLine());
+            
+            if (IsDoctorSalaryMin6Digits(salary))
+            {
+                count++;
+            }
+        }
+
+        Console.WriteLine("Number of doctors with salaries of at least six digits: " + count);
+    }
+
+    static bool IsDoctorSalaryMin6Digits(int salary)
+    {
+        return salary >= 100000; // A six-digit salary is at least 100000
+    }
+
+    static void Main()
+    {
+        CountDoctorsWithMin6DigitsSalary();
+        Console.WriteLine("Press any key to continue...");
+        Console.ReadKey();
+    }
+}
