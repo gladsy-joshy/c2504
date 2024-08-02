@@ -1,0 +1,215 @@
+P5. print the N th term in the series 0, 1, 1, 2, 3, 5, 8, 13, ... N terms 
+    Q13: use for loop
+    Q14: use while loop
+    Q15: use do..while loop
+
+
+
+
+	  
+		Q1: use for loop
+	----------------
+	
+Pseudocode
+-----------	  
+function GetNthFibonacciTermFor(N)
+    term1 = 0
+    term2 = 1
+    if N == 1
+        return term1
+    else if N == 2
+        return term2
+    end if
+    for I = 3; I <= N; I++
+        nextTerm = term1 + term2
+        term1 = term2
+        term2 = nextTerm
+    end for
+    return term2
+
+function TestGetNthFibonacciTermFor()
+    Input N
+    nthTerm = GetNthFibonacciTermFor(N)
+    Print nthTerm
+
+	  
+c#
+---	 
+
+class Q13
+{
+    static int GetNthFibonacciTermFor(int N)
+    {
+        int term1 = 0, term2 = 1;
+        if (N == 1) return term1;
+        if (N == 2) return term2;
+
+        for (int I = 3; I <= N; I++)
+        {
+            int nextTerm = term1 + term2;
+            term1 = term2;
+            term2 = nextTerm;
+        }
+        return term2;
+    }
+
+    static void TestGetNthFibonacciTermFor()
+    {
+        Console.Write("Enter the Nth term: ");
+        int N = int.Parse(Console.ReadLine());
+        int nthTerm = GetNthFibonacciTermFor(N);
+        Console.WriteLine($"Nth term is {nthTerm}");
+    }
+
+    static void Main(string[] args)
+    {
+        Console.WriteLine("-----TestGetNthFibonacciTermFor-----");
+        TestGetNthFibonacciTermFor();
+        Console.WriteLine("-----End TestGetNthFibonacciTermFor-----");
+        Console.WriteLine("Press any key to continue...");
+        Console.ReadKey();
+    }
+}
+  
+	  
+	 Q2: use while loop
+	 ------------------
+	 
+Pseudocode
+-----------	
+function GetNthFibonacciTermWhile(N)
+    term1 = 0
+    term2 = 1
+    I = 3
+    if N == 1
+        return term1
+    else if N == 2
+        return term2
+    end if
+    while I <= N
+        nextTerm = term1 + term2
+        term1 = term2
+        term2 = nextTerm
+        I++
+    end while
+    return term2
+
+function TestGetNthFibonacciTermWhile()
+    Input N
+    nthTerm = GetNthFibonacciTermWhile(N)
+    Print nthTerm
+  
+	  
+c#
+---	 
+
+class Q14
+{
+    static int GetNthFibonacciTermWhile(int N)
+    {
+        int term1 = 0, term2 = 1;
+        int I = 3;
+
+        if (N == 1) return term1;
+        if (N == 2) return term2;
+
+        while (I <= N)
+        {
+            int nextTerm = term1 + term2;
+            term1 = term2;
+            term2 = nextTerm;
+            I++;
+        }
+        return term2;
+    }
+
+    static void TestGetNthFibonacciTermWhile()
+    {
+        Console.Write("Enter the Nth term: ");
+        int N = int.Parse(Console.ReadLine());
+        int nthTerm = GetNthFibonacciTermWhile(N);
+        Console.WriteLine($"Nth term is {nthTerm}");
+    }
+
+    static void Main(string[] args)
+    {
+        Console.WriteLine("-----TestGetNthFibonacciTermWhile-----");
+        TestGetNthFibonacciTermWhile();
+        Console.WriteLine("-----End TestGetNthFibonacciTermWhile-----");
+        Console.WriteLine("Press any key to continue...");
+        Console.ReadKey();
+    }
+}
+
+	  
+	  
+		Q3: use do..while loop
+	----------------------
+	
+Pseudocode
+-----------  
+function GetNthFibonacciTermDoWhile(N)
+    term1 = 0
+    term2 = 1
+    I = 3
+    if N == 1
+        return term1
+    else if N == 2
+        return term2
+    end if
+    do
+        nextTerm = term1 + term2
+        term1 = term2
+        term2 = nextTerm
+        I++
+    while I <= N
+    return term2
+
+function TestGetNthFibonacciTermDoWhile()
+    Input N
+    nthTerm = GetNthFibonacciTermDoWhile(N)
+    Print nthTerm
+
+	  
+	  
+c#
+---	  
+	 
+class Q15
+{
+    static int GetNthFibonacciTermDoWhile(int N)
+    {
+        int term1 = 0, term2 = 1;
+        int I = 3;
+
+        if (N == 1) return term1;
+        if (N == 2) return term2;
+
+        do
+        {
+            int nextTerm = term1 + term2;
+            term1 = term2;
+            term2 = nextTerm;
+            I++;
+        } while (I <= N);
+
+        return term2;
+    }
+
+    static void TestGetNthFibonacciTermDoWhile()
+    {
+        Console.Write("Enter the Nth term: ");
+        int N = int.Parse(Console.ReadLine());
+        int nthTerm = GetNthFibonacciTermDoWhile(N);
+        Console.WriteLine($"Nth term is {nthTerm}");
+    }
+
+    static void Main(string[] args)
+    {
+        Console.WriteLine("-----TestGetNthFibonacciTermDoWhile-----");
+        TestGetNthFibonacciTermDoWhile();
+        Console.WriteLine("-----End TestGetNthFibonacciTermDoWhile-----");
+        Console.WriteLine("Press any key to continue...");
+        Console.ReadKey();
+    }
+}
