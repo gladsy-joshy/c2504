@@ -17,8 +17,8 @@ place varchar(126) not null
 sp_help trainer;
 
 SELECT * FROM trainer;
-INSERT INTO trainer(name,skill,place) VALUES('Neha','C#','Ekm');
-INSERT INTO trainer(name,skill,place) VALUES('Gladsy','C#','Tkm');
+INSERT INTO trainer(name,skill,place) VALUES('Gladsy','C#','Eklm');
+INSERT INTO trainer(name,skill,place) VALUES('Neha','C#','Tkm');
 INSERT INTO trainer(name,skill,place) VALUES('Sarika','WPF','Thrissur');
 INSERT INTO trainer(name,skill,place) VALUES('Sahla','C++','Evm');
 
@@ -34,13 +34,13 @@ UPDATE trainer
 SET skill = 'WPF and C#'
 WHERE id IN(1,4);
 
---update place of id 4 to kottayam
+--update place of id 4 to Ernakulam
 UPDATE trainer
-SET place = 'Kottayam'
+SET place = 'Ernakulam'
 WHERE id =4;
 
 --name based search--
-SELECT * FROM trainer WHERE name='Neha';
+SELECT * FROM trainer WHERE name='Gladsy';
 
 --to drop table- before delete delete all trainers
 DROP TABLE trainer;
