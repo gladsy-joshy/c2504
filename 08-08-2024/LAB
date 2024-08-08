@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    
+    <title>Document</title>
+</head>
+    <style>
+        code{
+            background-color: rgb(243, 243, 153);
+            padding: 3px;
+            border-radius: 5px;
+            color: blue;
+        }
+    </style>
+
+
+<body>
+    <p>Hello WORLD</p>
+    <h1>main heading</h1>
+    <h2>sub heading</h2>
+    <h6>small heading</h6>
+
+    <span>text 1</span>
+    <span>text 2</span>
+
+    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore, amet laborum. Tenetur sunt itaque doloremque error iure nisi obcaecati laudantium, debitis officiis tempore amet corrupti reprehenderit quis labore quaerat hic?</p>
+    <p>Use <code>Console.WriteLine()</code>  to display text in c hash</p>
+
+    <pre>
+        Hai
+                its me 
+                          Gladsy Joshy
+    </pre>
+
+</body>
+
+</html>
