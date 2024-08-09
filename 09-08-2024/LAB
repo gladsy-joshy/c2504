@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    
+    <title>Document</title>
+</head>
+    <style>
+        code{
+            background-color: rgb(243, 243, 153);
+            padding: 3px;
+            border-radius: 5px;
+            color: blue;
+        }
+    </style>
+
+
+<body>
+    <p>Hello WORLD</p>
+    <h1>main heading</h1>
+    <h2>sub heading</h2>
+    <h6>small heading</h6>
+
+    <span>text 1</span>
+    <span>text 2</span>
+
+    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore, amet laborum. Tenetur sunt itaque doloremque error iure nisi obcaecati laudantium, debitis officiis tempore amet corrupti reprehenderit quis labore quaerat hic?</p>
+    <p>Use <code>Console.WriteLine()</code>  to display text in c hash</p>
+
+    <pre>
+        Hai
+                its me 
+                          Gladsy Joshy
+    </pre>
+
+    <a href="http:www,agaoogle,com">Visit Google</a>
+    <a href="Contact.html">Contact Us</a>
+
+    <a href="Contact.html" target="_blank">Click on this a black page will display</a>
+
+<ul>
+    <li>Gladsy</li>    
+    <li>Blessy</li>
+
+    <li>Rani</li>
+
+</ul>
+
+<ol>
+    <li>Gladsy</li>
+    <li>Blessy</li>
+</ol>
+
+<ol type="A">
+    <li>Gladsy</li>
+    <li>Blessy</li>
+</ol>
+
+
+<ol type="a">
+    <li>Gladsy</li>
+    <li>Blessy</li>
+</ol>
+
+<ol type="" start="20">
+    <li>Gladsy</li>
+    <li>Blessy</li>
+</ol>
+
+<p>This is <b>html b tag</b>.</p>
+<p>This is <i>html i tag</i>.</p>
+<p>IN html we can use</p>
+<table  border="1">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Email</th>
+
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>1</dh>
+            <td>John</td>
+            <td>john@gmail.com</td>
+
+        </tr>
+        <tr>
+            <td>2</dh>
+            <td>Jane</td>
+            <td>jane@gmail.com</td>
+
+        </tr>
+    </tbody>
+    <tfoot>
+        <tr>
+            <th colspan="3">Total Users:2</th>
+        </tr>
+    </tfoot>
+</table>
+
+
+
+<table  border="1">
+    <thead>
+        <tr>
+            <th>DAYS</th>
+
+            <th>First Period</th>
+            <th>Second Period</th>
+            <th>Third Period</th>
+            <th>Fourth Period</th>
+            
+            <th>Fifth Period</th>
+            <th>Sixth Period</th>
+            <th>Seventh Period</th>
+            
+
+
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>MONDAY</dh>
+            <td>English</td>
+            <td>Malayalam</td>
+            <td>Maths</td>
+            <td>History</td>
+            <td>Biology</td>
+            <td>Geography</td>
+            <td>Computer</td>
+
+
+        </tr>
+        <tr>
+                 <td>TUESDAY</dh>
+                <td>Malayalam</td>
+                <td>Geography</td>
+                <td>Biology</td>
+                <td>Computer Lab</td>
+                <td>Computer Lab</td>
+                <td>Geography</td>
+                <td>Hindi</td>
+
+
+        </tr>
+        <tr>
+            <td>WEDNESDAY</dh>
+           <td>Geography</td>
+           <td>Malayalam</td>
+           <td>PT</td>
+           <td>History</td>
+           <td>Maths</td>
+           <td>Geography</td>
+           <td>Malayalam</td>
+
+           
+
+   </tr>
+   <tr>
+        <td>WEDNESDAY</dh>
+        <td>Malayalam</td>
+        <td>Hindi</td>
+        <td>Biology</td>
+        <td>History</td>
+        <td>PT</td>
+        <td>Geography</td>
+        <td>Geography</td>
+
+
+    </tr>
+    <tr>
+        <td>THURSDAY</dh>
+        <td>Maths</td>
+        <td>Malayalam</td>
+        <td>Biology</td>
+        <td>History</td>
+        <td>Hindi</td>
+        <td>History</td>
+        <td>History</td>
+
+
+    </tr>
+    <tr>
+        <td>FRIDAY</dh>
+        <td>Malayalam</td>
+        <td>Geography</td>
+        <td>Biology</td>
+        <td>History</td>
+        <td>Malayalam</td>
+        <td>Hindi</td>
+        <td>Malayalam</td>
+
+
+    </tr>
+    </tbody>
+   
+</table>
+
+<iframe src="https://www.bing.com" frameborder="1" ></iframe>
+</body>
+
+</html>
