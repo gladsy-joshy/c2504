@@ -6,13 +6,42 @@ calculate the average sales amount per customer
 
 
 
-ANS:SELECT 
+ANS:
+
+CREATE DATABASE sqlqueries;
+USE sqlqueries;
+
+CREATE TABLE Orders (
+    OrderID INT,
+    CustomerID INT,
+    SaleAmount DECIMAL(10, 2)
+);
+
+INSERT INTO Orders (OrderID, CustomerID, SaleAmount) VALUES
+(1, 101, 250.00),
+(2, 101, 150.00),
+(3, 102, 200.00),
+(4, 102, 300.00),
+(5, 103, 500.00);
+
+SELECT * FROM Orders;
+
+
+SELECT 
     CustomerID, 
     AVG(SaleAmount) AS AverageSalesPerCustomer
 FROM 
     Orders
 GROUP BY 
     CustomerID;
+
+
+CustomerID | AverageSalesPerCustomer
+-----------|--------------------------
+101        | 183.33
+102        | 250.00
+103        | 500.00
+
 
 
 
@@ -22,7 +51,25 @@ with columns SaleAmount and SaleDate,
 find the total sales amount for each month. 
 
 
-ANS:SELECT 
+ANS:
+
+CREATE TABLE Sales (
+SaleAmount DECIMAL(10, 2),
+SaleDate DATE
+);
+
+INSERT INTO Sales (SaleAmount, SaleDate) VALUES
+(100.00, '2024-01-15'),
+(150.00, '2024-01-20'),
+(200.00, '2024-02-10'),
+(250.00, '2024-02-25'),
+(300.00, '2024-03-05');
+
+
+SELECT * FROM Sales;
+
+
+SELECT 
     YEAR(SaleDate) AS SaleYear,
     MONTH(SaleDate) AS SaleMonth,
     SUM(SaleAmount) AS TotalSales
@@ -36,23 +83,82 @@ ORDER BY
     SaleMonth;
 
 
+SaleYear | SaleMonth | TotalSales
+---------|-----------|------------
+2024     | 1         | 250.00
+2024     | 2         | 450.00
+2024     | 3         | 300.00
+
+
+
 3.Find Employees Who Report to More Than One Manager
 Problem: Given an Employees table
 with columns EmployeeID, Name, and ManagerID,
 find employees who report to more than one manager.
 
 
-ANS:SELECT 
-    EmployeeID, 
-    Name, 
-    COUNT(DISTINCT ManagerID) AS NumberOfManagers
+ANS:
+
+CREATE TABLE FindManager (
+    ManagerID INT PRIMARY KEY,
+    ManagerName VARCHAR(100) NOT NULL
+);
+
+CREATE TABLE FindEmployeeManage (
+    EmployeeID INT,
+    Name VARCHAR(100) NOT NULL,
+    ManagerID INT,
+    PRIMARY KEY (EmployeeID, ManagerID),
+    FOREIGN KEY (ManagerID) REFERENCES FindManager(ManagerID)
+);
+
+
+INSERT INTO FindManager (ManagerID, ManagerName)
+VALUES
+    (1, 'Alice Johnson'),
+    (2, 'Bob Smith'),
+    (3, 'Carol Davis'),
+    (4, 'David Brown');
+
+
+INSERT INTO FindEmployeeManage (EmployeeID, Name, ManagerID)
+VALUES
+    (101, 'Eve Adams', 1),
+    (102, 'Frank Moore', 1),
+    (103, 'Grace Lee', 2),
+    (104, 'Hank Wilson', 2),
+    (105, 'Ivy Clark', 3),
+    (106, 'Jack White', 3),
+    (107, 'Lily Scott', 4),
+    (108, 'Mason Young', 4),
+    (109, 'Nina Carter', 1),  
+    (109, 'Nina Carter', 2);  
+
+WITH EmployeeManagerCounts AS (
+    SELECT 
+        EmployeeID, 
+        Name, 
+        COUNT(DISTINCT ManagerID) AS NumberOfManagers
+    FROM 
+        FindEmployeeManage
+    GROUP BY 
+        EmployeeID, 
+        Name
+)
+SELECT 
+    e.EmployeeID, 
+    e.Name
 FROM 
-    Employees
-GROUP BY 
-    EmployeeID, 
-    Name
-HAVING 
-    COUNT(DISTINCT ManagerID) > 1;
+    EmployeeManagerCounts e
+WHERE 
+    e.NumberOfManagers > 1;
+
+
+
+EmployeeID | Name       
+-----------|------------
+109        | Nina Carter 
+
 
 
 4.Find the Oldest and Youngest Employees
@@ -61,7 +167,25 @@ with columns EmployeeID, Name, and DateOfBirth,
 find the oldest and youngest employees.
 
 
-ANS:SELECT 
+ANS:
+
+
+CREATE TABLE Employees (
+    EmployeeID INT,
+    Name VARCHAR(100),
+    DateOfBirth DATE
+);
+
+INSERT INTO Employees (EmployeeID, Name, DateOfBirth) VALUES
+(1, 'Alice', '1980-05-15'),
+(2, 'Bob', '1975-08-25'),
+(3, 'Charlie', '1990-01-10'),
+(4, 'David', '1985-12-20'),
+(5, 'Eva', '1992-07-30');
+
+SELECT * FROM Employees;
+
+SELECT 
     EmployeeID, 
     Name, 
     DateOfBirth, 
@@ -85,6 +209,12 @@ WHERE
 
 
 
+EmployeeID | Name    | DateOfBirth | AgeCategory
+-----------|---------|-------------|-------------
+2          | Bob     | 1975-08-25  | Oldest
+5          | Eva     | 1992-07-30  | Youngest
+
+
 
 5.Find the Most Recent Order for Each Customer
 Problem: Given an Orders table
@@ -99,21 +229,53 @@ OrderDate DATE
 );
 
 
-ANS:SELECT 
+ANS:
+
+
+CREATE TABLE RecentOrder (
+    OrderID INT,
+    CustomerID INT,
+    OrderDate DATE
+);
+
+INSERT INTO RecentOrder (OrderID, CustomerID, OrderDate) VALUES
+(1, 101, '2024-07-01'),
+(2, 101, '2024-07-10'),
+(3, 102, '2024-06-15'),
+(4, 102, '2024-07-05'),
+(5, 103, '2024-07-20');
+
+
+SELECT * FROM RecentOrder;
+
+SELECT 
     o.OrderID, 
     o.CustomerID, 
     o.OrderDate
 FROM 
-    Orders o
+    RecentOrder o
 INNER JOIN 
     (SELECT 
          CustomerID, 
          MAX(OrderDate) AS MostRecentOrderDate
      FROM 
-         Orders
+         RecentOrder
      GROUP BY 
          CustomerID
     ) recent 
 ON 
     o.CustomerID = recent.CustomerID 
     AND o.OrderDate = recent.MostRecentOrderDate;
+
+
+
+OrderID | CustomerID | OrderDate
+--------|------------|----------
+2       | 101        | 2024-07-10
+4       | 102        | 2024-07-05
+5       | 103        | 2024-07-20
+
+
+
+
+
