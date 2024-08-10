@@ -1,0 +1,119 @@
+1.Find the Average Sales Per Customer
+Problem:
+Given an Orders table
+with columns OrderID, CustomerID, and SaleAmount,
+calculate the average sales amount per customer
+
+
+
+ANS:SELECT 
+    CustomerID, 
+    AVG(SaleAmount) AS AverageSalesPerCustomer
+FROM 
+    Orders
+GROUP BY 
+    CustomerID;
+
+
+
+2.Find Total Sales per Month
+Problem: Given a Sales table
+with columns SaleAmount and SaleDate,
+find the total sales amount for each month. 
+
+
+ANS:SELECT 
+    YEAR(SaleDate) AS SaleYear,
+    MONTH(SaleDate) AS SaleMonth,
+    SUM(SaleAmount) AS TotalSales
+FROM 
+    Sales
+GROUP BY 
+    YEAR(SaleDate), 
+    MONTH(SaleDate)
+ORDER BY 
+    SaleYear, 
+    SaleMonth;
+
+
+3.Find Employees Who Report to More Than One Manager
+Problem: Given an Employees table
+with columns EmployeeID, Name, and ManagerID,
+find employees who report to more than one manager.
+
+
+ANS:SELECT 
+    EmployeeID, 
+    Name, 
+    COUNT(DISTINCT ManagerID) AS NumberOfManagers
+FROM 
+    Employees
+GROUP BY 
+    EmployeeID, 
+    Name
+HAVING 
+    COUNT(DISTINCT ManagerID) > 1;
+
+
+4.Find the Oldest and Youngest Employees
+Problem: Given an Employees table
+with columns EmployeeID, Name, and DateOfBirth,
+find the oldest and youngest employees.
+
+
+ANS:SELECT 
+    EmployeeID, 
+    Name, 
+    DateOfBirth, 
+    'Oldest' AS AgeCategory
+FROM 
+    Employees
+WHERE 
+    DateOfBirth = (SELECT MIN(DateOfBirth) FROM Employees)
+
+UNION
+
+SELECT 
+    EmployeeID, 
+    Name, 
+    DateOfBirth, 
+    'Youngest' AS AgeCategory
+FROM 
+    Employees
+WHERE 
+    DateOfBirth = (SELECT MAX(DateOfBirth) FROM Employees);
+
+
+
+
+5.Find the Most Recent Order for Each Customer
+Problem: Given an Orders table
+with columns OrderID, CustomerID, and OrderDate,
+find the most recent order date for each customer.
+
+Table Structure:
+CREATE TABLE Orders (
+OrderID INT,
+CustomerID INT,
+OrderDate DATE
+);
+
+
+ANS:SELECT 
+    o.OrderID, 
+    o.CustomerID, 
+    o.OrderDate
+FROM 
+    Orders o
+INNER JOIN 
+    (SELECT 
+         CustomerID, 
+         MAX(OrderDate) AS MostRecentOrderDate
+     FROM 
+         Orders
+     GROUP BY 
+         CustomerID
+    ) recent 
+ON 
+    o.CustomerID = recent.CustomerID 
+    AND o.OrderDate = recent.MostRecentOrderDate;
