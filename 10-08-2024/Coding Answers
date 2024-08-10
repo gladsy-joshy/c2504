@@ -36,11 +36,7 @@ GROUP BY
     CustomerID;
 
 
-CustomerID | AverageSalesPerCustomer
------------|--------------------------
-101        | 183.33
-102        | 250.00
-103        | 500.00
+
 
 
 
@@ -83,11 +79,7 @@ ORDER BY
     SaleMonth;
 
 
-SaleYear | SaleMonth | TotalSales
----------|-----------|------------
-2024     | 1         | 250.00
-2024     | 2         | 450.00
-2024     | 3         | 300.00
+
 
 
 
@@ -155,9 +147,7 @@ WHERE
 
 
 
-EmployeeID | Name       
------------|------------
-109        | Nina Carter 
+
 
 
 
@@ -209,10 +199,7 @@ WHERE
 
 
 
-EmployeeID | Name    | DateOfBirth | AgeCategory
------------|---------|-------------|-------------
-2          | Bob     | 1975-08-25  | Oldest
-5          | Eva     | 1992-07-30  | Youngest
+
 
 
 
@@ -269,11 +256,10 @@ ON
 
 
 
-OrderID | CustomerID | OrderDate
---------|------------|----------
-2       | 101        | 2024-07-10
-4       | 102        | 2024-07-05
-5       | 103        | 2024-07-20
+
+
+
+
 
 
 
