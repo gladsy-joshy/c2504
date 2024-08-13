@@ -1,0 +1,82 @@
+namespace ProgrammingFundamentalsProject
+{
+    class Account // Savings Account
+    {
+        public string Number { get; private set; }
+        private float balance;
+
+        public float Balance
+        {
+            get { return balance; }
+            private set { balance = value; }
+        }
+
+        public Account(string _number)
+        {
+            Number = _number;
+            Balance = 0;
+        }
+
+        public void Deposit(float amount)
+        {
+            if (amount > 0)
+            {
+                Balance += amount;
+                Console.WriteLine($"Deposit successful: {amount}. New balance: {Balance}");
+            }
+            else
+            {
+                Console.WriteLine("Deposit amount must be positive.");
+            }
+        }
+
+        public void Withdraw(float amount)
+        {
+            if (amount > 0)
+            {
+                if (amount <= Balance)
+                {
+                    Balance -= amount;
+                    Console.WriteLine($"Withdrawal successful: {amount}. New balance: {Balance}");
+                }
+                else
+                {
+                    Console.WriteLine("Insufficient funds for withdrawal.");
+                }
+            }
+            else
+            {
+                Console.WriteLine("Withdrawal amount must be positive.");
+            }
+        }
+    }
+
+    internal class Program
+    {
+        static void Main(string[] args)
+        {
+            Account gladsyAc = new Account("1001200230034");
+
+            gladsyAc.Deposit(500000);
+            gladsyAc.Deposit(200000);
+            gladsyAc.Withdraw(75000); 
+            Console.WriteLine($"Gladsy's account balance is {gladsyAc.Balance}");
+
+            gladsyAc.Withdraw(700000);
+            Console.WriteLine($"Gladsy's account balance is {gladsyAc.Balance}");
+
+            gladsyAc.Withdraw(625000); 
+            Console.WriteLine($"Gladsy's account balance is {gladsyAc.Balance}");
+
+            gladsyAc.Deposit(1000001); 
+            Console.WriteLine($"Gladsy's account balance is {gladsyAc.Balance}");
+
+            gladsyAc.Deposit(1000000); 
+            Console.WriteLine($"Gladsy's account balance is {gladsyAc.Balance}");
+
+        
+
+            Console.ReadKey();
+        }
+    }
+}
