@@ -38,3 +38,11 @@ public class Program
         Console.WriteLine($"Sum: {result}");  // Expected output: 8 + i7
     }
 }
+
+----------------------------------------------------------------------------------------------
+OUTPUT
+
+First Complex Number: 3 + i4
+Second Complex Number: 5 + i3
+Sum: 8 + i7
+
