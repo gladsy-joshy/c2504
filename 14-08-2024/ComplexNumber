@@ -1,0 +1,40 @@
+using System;
+
+public class ComplexNumber
+{
+    public int Real { get; }
+    public int Imaginary { get; }
+
+    public ComplexNumber(int real, int imaginary)
+    {
+        Real = real;
+        Imaginary = imaginary;
+    }
+
+    public ComplexNumber Add(ComplexNumber other)
+    {
+        int newReal = Real + other.Real;
+        int newImaginary = Imaginary + other.Imaginary;
+        return new ComplexNumber(newReal, newImaginary);
+    }
+
+    public override string ToString()
+    {
+        return $"{Real} + i{Imaginary}";
+    }
+}
+
+public class Program
+{
+    public static void Main()
+    {
+        ComplexNumber num1 = new ComplexNumber(3, 4);  // Represents 3 + i4
+        ComplexNumber num2 = new ComplexNumber(5, 3);  // Represents 5 + i3
+
+        ComplexNumber result = num1.Add(num2);
+
+        Console.WriteLine($"First Complex Number: {num1}");
+        Console.WriteLine($"Second Complex Number: {num2}");
+        Console.WriteLine($"Sum: {result}");  // Expected output: 8 + i7
+    }
+}
