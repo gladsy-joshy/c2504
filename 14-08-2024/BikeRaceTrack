@@ -1,0 +1,54 @@
+using System;
+
+public class BikeRaceTrack
+{
+    public int Distance { get; }
+
+    public BikeRaceTrack(int distance)
+    {
+        Distance = distance;
+    }
+
+    public bool IsGt(BikeRaceTrack other)
+    {
+        return Distance > other.Distance;
+    }
+
+    public override string ToString()
+    {
+        return $"Distance={Distance}";
+    }
+}
+
+public class Program
+{
+    public static void Main()
+    {
+        BikeRaceTrack track1 = new BikeRaceTrack(100); // Distance 100
+        BikeRaceTrack track2 = new BikeRaceTrack(150); // Distance 150
+
+        Console.WriteLine($"Track 1: {track1}");
+        Console.WriteLine($"Track 2: {track2}");
+
+        if (track1.IsGt(track2))
+        {
+            Console.WriteLine($"Track 1 is longer than Track 2.");
+        }
+        else if (track2.IsGt(track1))
+        {
+            Console.WriteLine($"Track 2 is longer than Track 1.");
+        }
+        else
+        {
+            Console.WriteLine($"Both tracks have the same distance.");
+        }
+    }
+}
+-----------------------------------------------------------------------------------------------------
+
+OUTPUT
+
+Track 1: Distance=100
+Track 2: Distance=150
+Track 2 is longer than Track 1.
+
