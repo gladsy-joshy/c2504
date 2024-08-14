@@ -1,0 +1,81 @@
+1. How do you create the connection object?
+
+The connection object establishes a connection to the SQL Server database
+
+using (SqlConnection conn = new SqlConnection(connectionString))
+{
+    // Use the connection object here
+}
+
+
+
+2. How do you create the command object?
+
+The command object executes SQL queries or stored procedures against the database.
+
+SqlCommand cmd = new SqlCommand(query, conn);
+
+
+3. How do you write the parameterized SQL statement or query?
+
+A parameterized SQL statement includes placeholders for parameters, which are replaced with actual values when the query is executed.
+
+string query = "INSERT INTO Trainers (Name, Place, Skill) VALUES (@Name, @Place, @Skill)";
+
+
+4. How will you pass the value to the query?
+
+Values are passed to the query by adding parameters to the SqlCommand object
+
+cmd.Parameters.AddWithValue("@Name", trainer.name);
+cmd.Parameters.AddWithValue("@Place", trainer.place);
+cmd.Parameters.AddWithValue("@Skill", trainer.skill);
+
+
+5. How will you establish the connection to the database?
+
+To establish a connection, call the Open method on the SqlConnection object.It will establish connection between code and sql server.
+
+conn.Open();
+
+
+6. How will you run the query?
+
+For commands that modify data, use the ExecuteNonQuery method.
+
+cmd.ExecuteNonQuery();
+
+
+7. What is the SqlDataReader object?
+
+The SqlDataReader object is used to read data from the database in a forward-only, read-only manner.
+
+SqlDataReader reader = cmd.ExecuteReader();
+
+
+8. How will you read a row or many rows using the SqlDataReader object?
+
+Use the Read method to advance the reader to the next row
+
+if (reader.Read())
+{
+    // Process the data in the current row
+}
+
+
+9. What is the job of the reader.Read() function?
+
+The Read method advances the SqlDataReader to the next record. It returns true if there are more rows to read.
+
+bool hasRows = reader.Read(); // returns true if there are more rows
+
+
+
+10. How do you use the reader object after the Read() function?
+
+After calling Read(), access the data in the current row using indexers or column names.
+
+int id = (int)reader["Id"];
+string name = reader["Name"].ToString();
+string place = reader["Place"].ToString();
+string skill = reader["Skill"].ToString();
