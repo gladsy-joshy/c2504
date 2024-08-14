@@ -1,0 +1,64 @@
+using System;
+
+public class CricketGround
+{
+    public int LegSideDistance { get; }
+    public int OffSideDistance { get; }
+    public int StraightDistance { get; }
+    public int ThirdManDistance { get; }
+
+    public CricketGround(int legSide, int offSide, int straight, int thirdMan)
+    {
+        LegSideDistance = legSide;
+        OffSideDistance = offSide;
+        StraightDistance = straight;
+        ThirdManDistance = thirdMan;
+    }
+
+    public int FindShortestDistance()
+    {
+        return Math.Min(Math.Min(LegSideDistance, OffSideDistance), Math.Min(StraightDistance, ThirdManDistance));
+    }
+
+    public bool IsShortestDistanceGt(CricketGround other)
+    {
+        return FindShortestDistance() > other.FindShortestDistance();
+    }
+
+    public override string ToString()
+    {
+        return $"LegSide={LegSideDistance}, OffSide={OffSideDistance}, Straight={StraightDistance}, ThirdMan={ThirdManDistance}, ShortestDistance={FindShortestDistance()}";
+    }
+}
+
+public class Program
+{
+    public static void Main()
+    {
+        CricketGround ground1 = new CricketGround(65, 75, 80, 70);
+        CricketGround ground2 = new CricketGround(60, 80, 85, 75);
+
+        Console.WriteLine($"Ground 1: {ground1}");
+        Console.WriteLine($"Ground 2: {ground2}");
+
+        if (ground1.IsShortestDistanceGt(ground2))
+        {
+            Console.WriteLine($"Ground 1 is preferred over Ground 2.");
+        }
+        else if (ground2.IsShortestDistanceGt(ground1))
+        {
+            Console.WriteLine($"Ground 2 is preferred over Ground 1.");
+        }
+        else
+        {
+            Console.WriteLine($"Both grounds have the same shortest distance.");
+        }
+    }
+}
+______________________________________________________
+
+OUTPUT
+
+Ground 1: LegSide=65, OffSide=75, Straight=80, ThirdMan=70, ShortestDistance=65
+Ground 2: LegSide=60, OffSide=80, Straight=85, ThirdMan=75, ShortestDistance=60
+Ground 1 is preferred over Ground 2.
