@@ -1,0 +1,59 @@
+using System;
+
+public class Circle
+{
+    public int Radius { get; }
+
+    public Circle(int radius)
+    {
+        Radius = radius;
+    }
+
+    public float Circumference()
+    {
+        return 2 * (float)Math.PI * Radius;
+    }
+
+    public bool IsCircumferenceGt(Circle other)
+    {
+        return Circumference() > other.Circumference();
+    }
+
+    public override string ToString()
+    {
+        return $"Radius={Radius}, Circumference={Circumference():F2}";
+    }
+}
+
+public class Program
+{
+    public static void Main()
+    {
+        Circle circle1 = new Circle(5); // Radius 5
+        Circle circle2 = new Circle(7); // Radius 7
+
+        Console.WriteLine($"Circle 1: {circle1}");
+        Console.WriteLine($"Circle 2: {circle2}");
+
+        if (circle1.IsCircumferenceGt(circle2))
+        {
+            Console.WriteLine($"Circle 1 has a greater circumference than Circle 2.");
+        }
+        else if (circle2.IsCircumferenceGt(circle1))
+        {
+            Console.WriteLine($"Circle 2 has a greater circumference than Circle 1.");
+        }
+        else
+        {
+            Console.WriteLine($"Both circles have the same circumference.");
+        }
+    }
+}
+-----------------------------------------------------------------------------------------------------------------
+
+OUTPUT
+
+Circle 1: Radius=5, Circumference=31.42
+Circle 2: Radius=7, Circumference=43.98
+Circle 2 has a greater circumference than Circle 1.
+
