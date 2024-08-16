@@ -180,30 +180,21 @@ namespace LearnCSharp
  
  
  
- 1. Add new employee
+1. Add new employee
 2. Search employee
 Please enter your option: 1
 Name: emp1
-Email: em1@mail.com
+Email: emp1@gmail.com
 Age: 23
-1. Add new employee
-2. Search employee
-Please enter your option: emp2
-Invalid option
-1. Add new employee
-2. Search employee
-Please enter your option: 1
-Name: emp2
-Email: em2@mail.com
-Age: 24
+
 1. Add new employee
 2. Search employee
 Please enter your option: 2
 Email:
-em2@mail.com
-Name: emp2
-Email: em2@mail.com
-Age: 24
+emp1@mail.com
+Name: emp1
+Email: emp1@gmail.com
+Age: 23
 
 
 --------------------------------------------------------------------------------------------------------
