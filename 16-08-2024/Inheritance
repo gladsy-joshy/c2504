@@ -1,7 +1,7 @@
 using System;
 using System.Linq;
 
-single 
+single :
 
 
 public class Animal
@@ -13,7 +13,7 @@ public class Animal
 }
 
 
- multiple inheritance
+ multiple inheritance:
 
 
 public class Dog : Animal
@@ -37,15 +37,15 @@ internal class programs
     static void Main(string[] args)
     {
         Console.WriteLine("Dog");
-        Dog Brusley = new Dog();
-        Brusley.Eat();
-        Brusley.Bark();
+        Dog Rott = new Dog();
+        Rott.Eat();
+        Rott.Bark();
 
         Console.WriteLine("puppy");
-        Puppy Rocky = new Puppy();  
-        Rocky.Eat();
-        Rocky.Bark();
-        Rocky.Weep();
+        Puppy German = new Puppy();  
+        German.Eat();
+        German.Bark();
+        German.Weep();
     }
 }
 
@@ -54,7 +54,7 @@ internal class programs
 
 
 
-  Heirarchial inheritance
+  Heirarchial inheritance:
 
 
 public class Animal
@@ -86,15 +86,13 @@ internal class programs
     static void Main(string[] args)
     {
         Console.WriteLine("Dog");
-        Dog Brusley = new Dog();
-        Brusley.Eat();
-        Brusley.Bark();
+        Dog Rott = new Dog();
+        Rott.Eat();
+        Rott.Bark();
 
         Console.WriteLine("Meow");
-        Cat Rocky = new Cat();  
-        Rocky.Eat();
-        Rocky.Meow();
+        Cat Snobel = new Cat();  
+        Snobel.Eat();
+        Snobel.Meow();
     }
 }
-
---------------------------------------------------------------------------------------------------------------------------------------
