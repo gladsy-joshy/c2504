@@ -1,0 +1,30 @@
+using System;
+
+namespace Params
+{
+    class Program
+    {
+        static int AddNumbers(int first, int second, params int[] additionalNumbers)
+        {
+            int sum = first + second;
+
+            foreach (int number in additionalNumbers)
+            {
+                sum += number;
+            }
+            return sum;
+        }
+
+        static void Main()
+        {
+            int sum1 = AddNumbers(1, 2, 3, 4, 5);
+            int sum2 = AddNumbers(10, 20);
+
+            int sum3 = AddNumbers(7, 14, 21, 28, 35);
+
+            Console.WriteLine("Sum 1: " + sum1); 
+            Console.WriteLine("Sum 2: " + sum2); 
+            Console.WriteLine("Sum 3: " + sum3); 
+        }
+    }
+}
