@@ -1,0 +1,158 @@
+1. Problem Statement: Hospital Medication Management
+- Define a class: `HospitalMedication` with the following properties:
+- `HospitalID` (integer)
+- `DoctorName` (string)
+- `Medication` (string)
+- `Dosage` (double, in milligrams)
+- Tasks:
+1. Data Entry:
+- Read N `hospitalMedications` from the keyboard.
+2. Find Maximum Dosage by a Specific Doctor:
+- For a given doctor's name, display the medication with the highest dosage prescribed by them.
+Solve in time complexity of O(N).
+Dont use built-in C# sorting or LINQ.
+3. Find Second Least Dosage Overall:
+- Display the medication with the second least dosage across all hospitals.
+Solve in time complexity of O(N).
+Dont use built-in C# sorting or LINQ.
+4. Sort by Medication Name:
+- Implement and call your own sorting algorithm.
+Dont use built-in C# sorting or LINQ.
+
+
+
+ANS:
+
+
+using System;
+
+class Medication
+{
+    public int HospitalID { get; set; }
+    public string DoctorName { get; set; }
+    public string Name { get; set; }
+    public double Dosage { get; set; }
+}
+
+class Program
+{
+    static void Main()
+    {
+        
+        Console.Write("Enter the number of medications: ");
+        int count = int.Parse(Console.ReadLine());
+        Medication[] meds = new Medication[count];
+
+        for (int i = 0; i < count; i++)
+        {
+            Console.WriteLine($"Entering details for medication {i + 1}:");
+
+            Console.Write("Enter HospitalID: ");
+            int hospitalID = int.Parse(Console.ReadLine());
+            
+            Console.Write("Enter DoctorName: ");
+            string doctorName = Console.ReadLine();
+
+            Console.Write("Enter Medication name: ");
+            string medicationName = Console.ReadLine();
+
+            Console.Write("Enter Dosage (in mg): ");
+            double dosage = double.Parse(Console.ReadLine());
+
+            meds[i] = new Medication
+            {
+                HospitalID = hospitalID,
+                DoctorName = doctorName,
+                Name = medicationName,
+                Dosage = dosage
+            };
+        }
+
+        Console.Write("Enter the doctor's name to find the maximum dosage: ");
+        string doctorNameToSearch = Console.ReadLine();
+        FindMaxDosageByDoctor(meds, doctorNameToSearch);
+
+        FindSecondLeastDosage(meds);
+
+        SelectionSortByName(meds);
+        Console.WriteLine("Sorted medications by name:");
+        foreach (var med in meds)
+        {
+            Console.WriteLine($"{med.Name}: {med.Dosage} mg");
+        }
+    }
+
+    static void FindMaxDosageByDoctor(Medication[] meds, string doctorName)
+    {
+        double maxDosage = double.MinValue;
+        string maxMedication = null;
+
+        foreach (var med in meds)
+        {
+            if (med.DoctorName == doctorName && med.Dosage > maxDosage)
+            {
+                maxDosage = med.Dosage;
+                maxMedication = med.Name;
+            }
+        }
+
+        if (maxMedication != null)
+        {
+            Console.WriteLine($"Highest dosage by Dr. {doctorName} is {maxMedication} with dosage {maxDosage} mg.");
+        }
+        else
+        {
+            Console.WriteLine($"No medications found for Dr. {doctorName}.");
+        }
+    }
+
+    static void FindSecondLeastDosage(Medication[] meds)
+    {
+        double minDosage = double.MaxValue;
+        double secondMinDosage = double.MaxValue;
+
+        foreach (var med in meds)
+        {
+            if (med.Dosage < minDosage)
+            {
+                secondMinDosage = minDosage;
+                minDosage = med.Dosage;
+            }
+            else if (med.Dosage < secondMinDosage && med.Dosage > minDosage)
+            {
+                secondMinDosage = med.Dosage;
+            }
+        }
+
+        foreach (var med in meds)
+        {
+            if (med.Dosage == secondMinDosage)
+            {
+                Console.WriteLine($"Second least dosage is {med.Name} with dosage {secondMinDosage} mg.");
+                return;
+            }
+        }
+
+        Console.WriteLine("No second least dosage found.");
+    }
+
+    static void SelectionSortByName(Medication[] meds)
+    {
+        int n = meds.Length;
+        for (int i = 0; i < n - 1; i++)
+        {
+            int minIndex = i;
+            for (int j = i + 1; j < n; j++)
+            {
+                if (string.Compare(meds[j].Name, meds[minIndex].Name) < 0)
+                {
+                    minIndex = j;
+                }
+            }
+
+            var temp = meds[i];
+            meds[i] = meds[minIndex];
+            meds[minIndex] = temp;
+        }
+    }
+}
