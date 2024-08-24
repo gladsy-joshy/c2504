@@ -1,0 +1,155 @@
+2.Problem Statement: Interface Implementation in Patient Monitoring
+- Define an interface: `IVitalMonitor` with the following methods:
+- `CheckVitals()` (void)
+- `GenerateAlert()` (void)
+- Define a class: `Patient` with properties:
+- `PatientID` (integer), `Name` (string)
+- Define a derived class: `ICUPatient` that inherits from `Patient` and implements the `IVitalMonitor` interface:
+- Properties: `HeartRate` (integer), `BloodPressure` (string)
+- Implement `CheckVitals()` to check if vitals are within a safe range.
+- Implement `GenerateAlert()` to trigger an alert if vitals are abnormal.
+- Define another derived class: `OutPatient` that also inherits from `Patient` and implements the `IVitalMonitor` interface:
+- Properties: `Temperature` (double), `RespirationRate` (integer)
+- Implement `CheckVitals()` and `GenerateAlert()` with different conditions.
+- Tasks:
+1. Monitor Vitals:
+- Read N `patients` of both types (ICU and OutPatients).
+2. Generate Alerts:
+- Call `CheckVitals()` and `GenerateAlert()` for each patient and display any alerts generated.
+
+
+
+ANS:
+   using System;
+
+interface IVitalMonitor
+{
+    void CheckVitals();
+    void GenerateAlert();
+}
+
+class Patient
+{
+    public int PatientID { get; set; }
+    public string Name { get; set; }
+}
+
+class ICUPatient : Patient, IVitalMonitor
+{
+    public int HeartRate { get; set; }
+    public string BloodPressure { get; set; }
+
+    public void CheckVitals()
+    {
+        if (HeartRate < 60 || HeartRate > 100 || BloodPressure == "High")
+        {
+            Console.WriteLine($"{Name} (ICU Patient) has abnormal vitals.");
+        }
+        else
+        {
+            Console.WriteLine($"{Name} (ICU Patient) has normal vitals.");
+        }
+    }
+
+    public void GenerateAlert()
+    {
+        if (HeartRate < 60 || HeartRate > 100 || BloodPressure == "High")
+        {
+            Console.WriteLine($"Alert: {Name} (ICU Patient) needs immediate attention.");
+        }
+    }
+}
+
+class OutPatient : Patient, IVitalMonitor
+{
+    public double Temperature { get; set; }
+    public int RespirationRate { get; set; }
+
+    public void CheckVitals()
+    {
+        if (Temperature > 100.4 || RespirationRate < 12 || RespirationRate > 20)
+        {
+            Console.WriteLine($"{Name} (OutPatient) has abnormal vitals.");
+        }
+        else
+        {
+            Console.WriteLine($"{Name} (OutPatient) has normal vitals.");
+        }
+    }
+
+    public void GenerateAlert()
+    {
+        if (Temperature > 100.4 || RespirationRate < 12 || RespirationRate > 20)
+        {
+            Console.WriteLine($"Alert: {Name} (OutPatient) needs medical review.");
+        }
+    }
+}
+
+class Program
+{
+    static void Main()
+    {
+        Console.Write("Enter the number of patients: ");
+        int count = int.Parse(Console.ReadLine());
+
+        IVitalMonitor[] patients = new IVitalMonitor[count];
+
+        for (int i = 0; i < count; i++)
+        {
+            Console.Write("Enter patient type (ICU/OutPatient): ");
+            string type = Console.ReadLine();
+
+            Console.Write("Enter Patient ID: ");
+            int id = int.Parse(Console.ReadLine());
+
+            Console.Write("Enter Patient Name: ");
+            string name = Console.ReadLine();
+
+            if (type == "ICU")
+            {
+                Console.Write("Enter Heart Rate: ");
+                int heartRate = int.Parse(Console.ReadLine());
+
+                Console.Write("Enter Blood Pressure: ");
+                string bloodPressure = Console.ReadLine();
+
+                patients[i] = new ICUPatient
+                {
+                    PatientID = id,
+                    Name = name,
+                    HeartRate = heartRate,
+                    BloodPressure = bloodPressure
+                };
+            }
+            else if (type == "OutPatient")
+            {
+                Console.Write("Enter Temperature: ");
+                double temperature = double.Parse(Console.ReadLine());
+
+                Console.Write("Enter Respiration Rate: ");
+                int respirationRate = int.Parse(Console.ReadLine());
+
+                patients[i] = new OutPatient
+                {
+                    PatientID = id,
+                    Name = name,
+                    Temperature = temperature,
+                    RespirationRate = respirationRate
+                };
+            }
+            else
+            {
+                Console.WriteLine("Invalid patient type. Skipping entry.");
+                i--; 
+            }
+        }
+
+       
+        foreach (var patient in patients)
+        {
+            patient.CheckVitals();
+            patient.GenerateAlert();
+        }
+    }
+}
