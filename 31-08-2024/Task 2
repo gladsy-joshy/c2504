@@ -1,0 +1,383 @@
+***** Apply the crud operations. Use array list. ********
+------------------------------------------------------------
+
+1. Program.cs
+---------------
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using log4net;
+
+
+namespace Week4AssessmentTask2
+{
+    internal class Program
+    {
+        private static readonly ILog log = LogManager.GetLogger(typeof(Program));
+
+        static void Main(string[] args)
+        {
+            log4net.Config.XmlConfigurator.Configure();
+
+            MedicationUI ui = new MedicationUI();
+            bool running = true;
+
+            while (running)
+            {
+                Console.WriteLine("\nMedication Management System");
+                Console.WriteLine("1. Create Medication");
+                Console.WriteLine("2. Read Medication");
+                Console.WriteLine("3. Update Medication");
+                Console.WriteLine("4. Delete Medication");
+                Console.WriteLine("5. List All Medications");
+                Console.WriteLine("6. Exit");
+
+                Console.Write("Choose an option: ");
+                string choice = Console.ReadLine();
+
+                switch (choice)
+                {
+                    case "1":
+                        ui.CreateMedication();
+                        break;
+                    case "2":
+                        ui.ReadMedication();
+                        break;
+                    case "3":
+                        ui.UpdateMedication();
+                        break;
+                    case "4":
+                        ui.DeleteMedication();
+                        break;
+                    case "5":
+                        ui.ListAllMedications();
+                        break;
+                    case "6":
+                        running = false;
+                        Console.WriteLine("Exiting...");
+                        break;
+                    default:
+                        Console.WriteLine("Invalid choice. Please try again.");
+                        break;
+                }
+            }
+        }
+    }
+}
+
+
+
+2. Medication.cs
+--------------------
+
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Week4AssessmentTask2
+{
+    public class Medication
+    {
+        public int HospitalID { get; set; }
+        public string DoctorName { get; set; }
+        public string Name { get; set; }
+        public double Dosage { get; set; }
+
+        public Medication(int hospitalID, string doctorName, string name, double dosage)
+        {
+            HospitalID = hospitalID;
+            DoctorName = doctorName;
+            Name = name;
+            Dosage = dosage;
+        }
+
+        public override string ToString()
+        {
+            return $"[HospitalID={HospitalID}, DoctorName={DoctorName}, Name={Name}, Dosage={Dosage}]";
+        }
+    }
+}
+
+
+3. MedicationDAO.cs
+-------------------------
+
+using System;
+using System.Collections.Generic;
+using System.Data.SqlClient;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Week4AssessmentTask2
+{
+    public class MedicationDAO
+    {
+        private string connectionString = "Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=Week4AssessmentDb;Integrated Security=True;";
+
+        public void Create(Medication medication)
+        {
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            {
+                string query = "INSERT INTO Medication (HospitalID, DoctorName, Name, Dosage) VALUES (@HospitalID, @DoctorName, @Name, @Dosage)";
+                SqlCommand cmd = new SqlCommand(query, conn);
+                cmd.Parameters.AddWithValue("@HospitalID", medication.HospitalID);
+                cmd.Parameters.AddWithValue("@DoctorName", medication.DoctorName);
+                cmd.Parameters.AddWithValue("@Name", medication.Name);
+                cmd.Parameters.AddWithValue("@Dosage", medication.Dosage);
+
+                conn.Open();
+                cmd.ExecuteNonQuery();
+            }
+        }
+
+        public Medication Read(int hospitalID)
+        {
+            Medication medication = null;
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            {
+                string query = "SELECT HospitalID, DoctorName, Name, Dosage FROM Medication WHERE HospitalID = @HospitalID";
+                SqlCommand cmd = new SqlCommand(query, conn);
+                cmd.Parameters.AddWithValue("@HospitalID", hospitalID);
+
+                conn.Open();
+                SqlDataReader reader = cmd.ExecuteReader();
+                if (reader.Read())
+                {
+                    medication = new Medication(
+                        (int)reader["HospitalID"],
+                        reader["DoctorName"].ToString(),
+                        reader["Name"].ToString(),
+                        (double)reader["Dosage"]
+                    );
+                }
+            }
+            return medication;
+        }
+
+        public void Update(Medication medication)
+        {
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            {
+                string query = "UPDATE Medication SET DoctorName = @DoctorName, Name = @Name, Dosage = @Dosage WHERE HospitalID = @HospitalID";
+                SqlCommand cmd = new SqlCommand(query, conn);
+                cmd.Parameters.AddWithValue("@HospitalID", medication.HospitalID);
+                cmd.Parameters.AddWithValue("@DoctorName", medication.DoctorName);
+                cmd.Parameters.AddWithValue("@Name", medication.Name);
+                cmd.Parameters.AddWithValue("@Dosage", medication.Dosage);
+
+                conn.Open();
+                cmd.ExecuteNonQuery();
+            }
+        }
+
+        public void Delete(int hospitalID)
+        {
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            {
+                string query = "DELETE FROM Medication WHERE HospitalID = @HospitalID";
+                SqlCommand cmd = new SqlCommand(query, conn);
+                cmd.Parameters.AddWithValue("@HospitalID", hospitalID);
+
+                conn.Open();
+                cmd.ExecuteNonQuery();
+            }
+        }
+
+        public List<Medication> ListAll()
+        {
+            List<Medication> medications = new List<Medication>();
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            {
+                string query = "SELECT HospitalID, DoctorName, Name, Dosage FROM Medication";
+                SqlCommand cmd = new SqlCommand(query, conn);
+
+                conn.Open();
+                SqlDataReader reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    Medication medication = new Medication(
+                        (int)reader["HospitalID"],
+                        reader["DoctorName"].ToString(),
+                        reader["Name"].ToString(),
+                        (double)reader["Dosage"]
+                    );
+                    medications.Add(medication);
+                }
+            }
+            return medications;
+        }
+    }
+
+}
+
+
+4. MedicationUI.cs
+----------------------
+
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Week4AssessmentTask2
+{
+    public class MedicationUI
+    {
+        private MedicationDAO medicationDAO = new MedicationDAO();
+
+        public void CreateMedication()
+        {
+            Console.Write("Enter Hospital ID: ");
+            int hospitalID = int.Parse(Console.ReadLine());
+            Console.Write("Enter Doctor Name: ");
+            string doctorName = Console.ReadLine();
+            Console.Write("Enter Medication Name: ");
+            string name = Console.ReadLine();
+            Console.Write("Enter Dosage: ");
+            double dosage = double.Parse(Console.ReadLine());
+
+            Medication medication = new Medication(hospitalID, doctorName, name, dosage);
+            medicationDAO.Create(medication);
+            Console.WriteLine("Medication created successfully.");
+        }
+
+        public void ReadMedication()
+        {
+            Console.Write("Enter Hospital ID: ");
+            int hospitalID = int.Parse(Console.ReadLine());
+
+            Medication medication = medicationDAO.Read(hospitalID);
+            if (medication != null)
+            {
+                Console.WriteLine($"HospitalID: {medication.HospitalID}");
+                Console.WriteLine($"Doctor Name: {medication.DoctorName}");
+                Console.WriteLine($"Medication Name: {medication.Name}");
+                Console.WriteLine($"Dosage: {medication.Dosage}");
+            }
+            else
+            {
+                Console.WriteLine("Medication not found.");
+            }
+        }
+
+        public void UpdateMedication()
+        {
+            Console.Write("Enter Hospital ID: ");
+            int hospitalID = int.Parse(Console.ReadLine());
+
+            Medication medication = medicationDAO.Read(hospitalID);
+            if (medication != null)
+            {
+                Console.Write("Enter new Doctor Name: ");
+                medication.DoctorName = Console.ReadLine();
+                Console.Write("Enter new Medication Name: ");
+                medication.Name = Console.ReadLine();
+                Console.Write("Enter new Dosage: ");
+                medication.Dosage = double.Parse(Console.ReadLine());
+
+                medicationDAO.Update(medication);
+                Console.WriteLine("Medication updated successfully.");
+            }
+            else
+            {
+                Console.WriteLine("Medication not found.");
+            }
+        }
+
+        public void DeleteMedication()
+        {
+            Console.Write("Enter Hospital ID: ");
+            int hospitalID = int.Parse(Console.ReadLine());
+
+            medicationDAO.Delete(hospitalID);
+            Console.WriteLine("Medication deleted successfully.");
+        }
+
+        public void ListAllMedications()
+        {
+            List<Medication> medications = medicationDAO.ListAll();
+            foreach (Medication medication in medications)
+            {
+                Console.WriteLine(medication.ToString());
+            }
+        }
+    }
+
+}
+
+
+
+
+5. OUTPUT
+---------------
+
+
+
+
+Medication Management System
+1. Create Medication
+2. Read Medication
+3. Update Medication
+4. Delete Medication
+5. List All Medications
+6. Exit
+Choose an option: 1
+Enter Hospital ID: 7
+Enter Doctor Name: Dr. John
+Enter Medication Name: Paracetamol
+Enter Dosage: 120
+Medication created successfully.
+
+Medication Management System
+1. Create Medication
+2. Read Medication
+3. Update Medication
+4. Delete Medication
+5. List All Medications
+6. Exit
+Choose an option: 2
+Enter Hospital ID: 2
+HospitalID: 2
+Doctor Name: Dr. Johnson
+Medication Name: Tylenol
+Dosage: 50
+
+Medication Management System
+1. Create Medication
+2. Read Medication
+3. Update Medication
+4. Delete Medication
+5. List All Medications
+6. Exit
+Choose an option: 5
+[HospitalID=1, DoctorName=Dr. Smith, Name=Aspirin, Dosage=100]
+[HospitalID=2, DoctorName=Dr. Johnson, Name=Tylenol, Dosage=50]
+[HospitalID=3, DoctorName=Dr. Williams, Name=Amoxicillin, Dosage=500]
+[HospitalID=6, DoctorName=Dr. Joshy, Name=Tonic, Dosage=200]
+[HospitalID=2, DoctorName=Dr. Johnson, Name=Paracetamol, Dosage=150]
+[HospitalID=3, DoctorName=Dr. Williams, Name=Metformin, Dosage=250]
+[HospitalID=7, DoctorName=Dr. John, Name=Paracetamol, Dosage=120]
+
+Medication Management System
+1. Create Medication
+2. Read Medication
+3. Update Medication
+4. Delete Medication
+5. List All Medications
+6. Exit
+Choose an option: 6
+Exiting...
+Press any key to continue . . .
+
+
+
+
