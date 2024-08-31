@@ -116,30 +116,35 @@ namespace Week4AssessmentApp
 
         public static Medication FindSecondLeastDosage(Medication[] meds)
         {
-            if (meds == null || meds.Length < 2)
+            if (meds.Length < 2)
             {
-                return null; // Not enough data to determine the second least dosage
+                // Not enough data to determine the second least dosage
+                return null;
             }
 
-            var uniqueDosages = meds
-                .Select(m => m.Dosage)
-                .Distinct()
-                .OrderBy(d => d)
-                .ToList();
+            double minDosage = double.MaxValue;
+            double secondMinDosage = double.MaxValue;
+            Medication secondLeastDosageMedication = null;
 
-            if (uniqueDosages.Count < 2)
+            foreach (Medication medication in meds)
             {
-                return null; // Not enough unique dosages
+                if (medication.Dosage < minDosage)
+                {
+                    // Update second min before updating min
+                    secondMinDosage = minDosage;
+                    minDosage = medication.Dosage;
+                }
+                else if (medication.Dosage < secondMinDosage && medication.Dosage > minDosage)
+                {
+                    secondMinDosage = medication.Dosage;
+                    secondLeastDosageMedication = medication;
+                }
             }
 
-            double secondLeastDosage = uniqueDosages[1];
-
-            return meds
-                .Where(m => m.Dosage == secondLeastDosage)
-                .OrderBy(m => m.HospitalID)
-                .FirstOrDefault();
+            // Ensure that we found a valid second least dosage
+            return secondLeastDosageMedication;
         }
-    }
+ }
 
     public class Program
     {
@@ -182,6 +187,7 @@ namespace Week4AssessmentApp
         }
     }
 }
+
 
 
 2. App.config
@@ -317,26 +323,40 @@ namespace Week4AssessmentApp.Tests
             Assert.AreEqual(expected, actual);
         }
 
-        [TestMethod]
-        public void FindSecondLeastDosageTest()
+  [TestMethod]
+        public void FindSecondLeastDosage_Test()
         {
-            Medication[] meds = new Medication[5];
-            meds[0] = new Medication { HospitalID = 1, DoctorName = "Dr. Smith", Name = "Ibuprofen", Dosage = 200.0 };
-            meds[1] = new Medication { HospitalID = 2, DoctorName = "Dr. Johnson", Name = "Paracetamol", Dosage = 150.0 };
-            meds[2] = new Medication { HospitalID = 3, DoctorName = "Dr. Williams", Name = "Amoxicillin", Dosage = 500.0 };
-            meds[3] = new Medication { HospitalID = 4, DoctorName = "Dr. Brown", Name = "Penicillin", Dosage = 100.0 };
-            meds[4] = new Medication { HospitalID = 5, DoctorName = "Dr. Miller", Name = "Aspirin", Dosage = 150.0 };
+            // Arrange: Set up the test data
+            Medication[] medications = new Medication[]
+            {
+        new Medication { HospitalID = 1, DoctorName = "Dr. A", Name = "Medicine A", Dosage = 500 },
+        new Medication { HospitalID = 2, DoctorName = "Dr. B", Name = "Medicine B", Dosage = 200 },
+        new Medication { HospitalID = 3, DoctorName = "Dr. C", Name = "Medicine C", Dosage = 300 },
+        new Medication { HospitalID = 4, DoctorName = "Dr. D", Name = "Medicine D", Dosage = 400 }
+            };
 
-            // Adjusting expected value to match the logic
-            Medication expected = new Medication { HospitalID = 2, DoctorName = "Dr. Johnson", Name = "Paracetamol", Dosage = 150.0 };
+            // Act: Call the method under test
+            Medication actual = MedicationService.FindSecondLeastDosage(medications);
 
-            Medication actual = MedicationService.FindSecondLeastDosage(meds);
+            // Expected result: The second least dosage is 300, so the corresponding medication should be "Medicine C"
+            Medication expected = new Medication
+            {
+                HospitalID = 3,
+                DoctorName = "Dr. C",
+                Name = "Medicine C",
+                Dosage = 300
+            };
 
-            Assert.AreEqual(expected.ToString(), actual.ToString());
+            // Assert: Verify that the method returns the expected result
+            Assert.IsNotNull(actual, "The result should not be null.");
+            Assert.AreEqual(expected.HospitalID, actual.HospitalID, "HospitalID should match.");
+            Assert.AreEqual(expected.DoctorName, actual.DoctorName, "DoctorName should match.");
+            Assert.AreEqual(expected.Name, actual.Name, "Name should match.");
+            Assert.AreEqual(expected.Dosage, actual.Dosage, "Dosage should match.");
         }
-
-    }
+ }
 }
+
 
 
 5.OUTPUT
