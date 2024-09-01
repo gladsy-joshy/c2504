@@ -144,7 +144,18 @@ namespace Week4AssessmentApp
             // Ensure that we found a valid second least dosage
             return secondLeastDosageMedication;
         }
- }
+
+
+
+
+
+
+
+
+
+
+
+    }
 
     public class Program
     {
@@ -173,7 +184,16 @@ namespace Week4AssessmentApp
 
             Console.Write("Enter the doctor's name to find the maximum dosage: ");
             string doctorNameToSearch = Console.ReadLine();
-            MedicationService.FindMaxDosageByDoctor(meds, doctorNameToSearch);
+
+            string maxMedication = MedicationService.FindMaxDosageByDoctor(meds, doctorNameToSearch);
+            if (!string.IsNullOrEmpty(maxMedication))
+            {
+                log.Info($"The medication with the highest dosage prescribed by Dr. {doctorNameToSearch} is {maxMedication}.");
+            }
+            else
+            {
+                log.Info($"No medication found for Dr. {doctorNameToSearch}.");
+            }
 
             Medication secondLeast = MedicationService.FindSecondLeastDosage(meds);
             if (secondLeast != null)
@@ -187,6 +207,7 @@ namespace Week4AssessmentApp
         }
     }
 }
+
 
 
 
