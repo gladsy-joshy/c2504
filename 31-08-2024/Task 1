@@ -384,12 +384,13 @@ namespace Week4AssessmentApp.Tests
 -------------
 
 
-2024-08-31 17:59:49,295 [1] INFO  Week4AssessmentApp.Program - Sorted medications by name:
-2024-08-31 17:59:49,295 [1] INFO  Week4AssessmentApp.Program - Amoxicillin: 500 mg
-2024-08-31 17:59:49,295 [1] INFO  Week4AssessmentApp.Program - Aspirin: 100 mg
-2024-08-31 17:59:49,295 [1] INFO  Week4AssessmentApp.Program - Paracetamol: 150 mg
-2024-08-31 17:59:49,295 [1] INFO  Week4AssessmentApp.Program - Tonic: 200 mg
-2024-08-31 17:59:49,295 [1] INFO  Week4AssessmentApp.Program - Tylenol: 50 mg
-Enter the doctor's name to find the maximum dosage: Dr. Smith
-2024-08-31 17:59:58,533 [1] INFO  Week4AssessmentApp.Program - Second least dosage is Aspirin with dosage 100 mg.
+2024-09-02 01:18:32,357 [1] INFO  Week4AssessmentApp.Program - Sorted medications by name:
+2024-09-02 01:18:32,357 [1] INFO  Week4AssessmentApp.Program - Amoxicillin: 500 mg
+2024-09-02 01:18:32,357 [1] INFO  Week4AssessmentApp.Program - Aspirin: 100 mg
+2024-09-02 01:18:32,357 [1] INFO  Week4AssessmentApp.Program - Paracetamol: 150 mg
+2024-09-02 01:18:32,357 [1] INFO  Week4AssessmentApp.Program - Tonic: 200 mg
+2024-09-02 01:18:32,357 [1] INFO  Week4AssessmentApp.Program - Tylenol: 50 mg
+Enter the doctor's name to find the maximum dosage: Dr. Johnson
+2024-09-02 01:19:02,455 [1] INFO  Week4AssessmentApp.Program - The medication with the highest dosage prescribed by Dr. Dr. Johnson is Paracetamol.
+2024-09-02 01:19:02,455 [1] INFO  Week4AssessmentApp.Program - Second least dosage is Paracetamol with dosage 150 mg.
 Press any key to continue . . .
